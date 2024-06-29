@@ -3,6 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal, ArrowUpDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { clerkClient } from "@clerk/nextjs/server";
 
 import {
   DropdownMenu,
@@ -85,7 +86,7 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     accessorKey: "actions",
-    header: "Actions",
+    header: "Assign Role",
     cell: (row) => (
       <DropdownMenu>
         <DropdownMenuTrigger>
@@ -93,11 +94,9 @@ export const columns: ColumnDef<User>[] = [
             <MoreHorizontal />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem>Edit User Roles</DropdownMenuItem>
-          <DropdownMenuItem>Delete User</DropdownMenuItem>
+        <DropdownMenuContent>        
+          <DropdownMenuItem>Examiner</DropdownMenuItem>
+          <DropdownMenuItem>Invigilator</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     ),
