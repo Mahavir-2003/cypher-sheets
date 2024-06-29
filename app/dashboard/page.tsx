@@ -1,4 +1,3 @@
-import { UserButton } from "@clerk/nextjs";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { Roles } from "../lib/definitions";
 import AdminDashboard from "../components/AdminDashboard";
