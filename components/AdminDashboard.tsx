@@ -1,5 +1,5 @@
-import { auth, clerkClient } from "@clerk/nextjs/server";
-import { Roles } from "../lib/definitions";
+import { Roles } from "@/lib/definitions";
+import { auth } from "@clerk/nextjs/server";
 
 const AdminDashboard = () => {
 
@@ -11,7 +11,7 @@ const AdminDashboard = () => {
     }
 
   return (
-    <div>AdminDashboard</div>
+    <div>AdminDashboard hheh</div>
   )
 }
 

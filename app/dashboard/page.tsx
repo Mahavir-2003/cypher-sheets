@@ -1,6 +1,9 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { Roles } from "../lib/definitions";
-import AdminDashboard from "../components/AdminDashboard";
+import { Roles } from "../../lib/definitions";
+import AdminDashboard from "@/components/AdminDashboard";
+import ExaminerDashboard from "@/components/ExaminerDashboard";
+import InvigilatorDashboard from "@/components/InvigilatorDashboard";
+import VisitorDashboard from "@/components/VisitorDashboard";
 
 const Dashboard = () => {
   const { sessionClaims, userId } = auth();
@@ -18,9 +21,9 @@ const Dashboard = () => {
   return (
     <>
       {role === Roles.ADMIN && <AdminDashboard />}
-      {role === Roles.EXAMINER && <h1>Examiner Dashboard</h1>}
-      {role === Roles.INVIGILATOR && <h1>Invigilator Dashboard</h1>}
-      {role === Roles.VISITOR && <h1>Visitor Dashboard</h1>}
+      {role === Roles.EXAMINER && <ExaminerDashboard />}
+      {role === Roles.INVIGILATOR && <InvigilatorDashboard />}
+      {role === Roles.VISITOR && <VisitorDashboard />}
     </>
   );
 };

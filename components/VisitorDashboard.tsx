@@ -1,5 +1,5 @@
+import { Roles } from "@/lib/definitions";
 import { auth, clerkClient } from "@clerk/nextjs/server";
-import { Roles } from "../lib/definitions";
 
 const VisitorDashboard = () => {
 
