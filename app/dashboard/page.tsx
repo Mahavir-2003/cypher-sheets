@@ -19,12 +19,12 @@ const Dashboard = () => {
 
 
   return (
-    <>
+    <div className="w-full flex-1 flex justify-center items-center py-5">
       {role === Roles.ADMIN && <AdminDashboard />}
       {role === Roles.EXAMINER && <ExaminerDashboard />}
       {role === Roles.INVIGILATOR && <InvigilatorDashboard />}
       {role === Roles.VISITOR && <VisitorDashboard />}
-    </>
+    </div>
   );
 };
 
