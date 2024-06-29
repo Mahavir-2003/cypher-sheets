@@ -57,7 +57,7 @@ const InvigilatorPapers = () => {
   return (
     <div>
       <Table>
-        <TableCaption>A list of All Users.</TableCaption>
+        <TableCaption>A list of All Papers.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead>filename</TableHead>
