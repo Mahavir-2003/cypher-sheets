@@ -17,6 +17,9 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
+import Users from "./AdminComponents/Users";
+import AdminPapers from "./AdminComponents/AdminPapers";
+import AdminUpload from "./AdminComponents/AdminUpload";
 
 const AdminDashboard = () => {
 
@@ -35,7 +38,13 @@ const AdminDashboard = () => {
         <TabsTrigger value="papers">Papers</TabsTrigger>
         <TabsTrigger value="upload">Upload</TabsTrigger>
       </TabsList>
-      
+      <TabsContent value="users"><Users /></TabsContent>
+      <TabsContent value="papers">
+        <AdminPapers />
+      </TabsContent>
+      <TabsContent value="upload">
+          <AdminUpload />
+      </TabsContent>
     </Tabs>
     </div>
   )
