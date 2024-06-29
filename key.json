@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cypher-sheets",
+  "private_key_id": "0ad57942d4b9ecc539bad424eaf1cfe6b56afc82",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDYVomyw3aF7AcD\nUUVKics/0RE0oLxHFGVUJ8wqEe/tUBlmQXCRswLme0s2mOVyHL0HxHJX7EUY1j4p\ncVzk86A3fKo87pQoryivXWaisIVhtcoZCswGDclTnBCuFzd8DFTbwiidIl4FY+bO\nk0c+MViBEFp+bTJckwzLvyd0tUv4eGp4JGUen5cdEcaXZAoIfuQqxvKybWClyd5x\nRd6VoI0B2a6JgNmB7Fc9f2bVNaLmmaueVNJr2ap888nvzbl9qrZfjJ4A32gwFEbA\nbDK37ENyrAlkKmm6N40L7agRPJsxph36MEUyZ4A3blBj6PPS/e7c4hWvCVnkBTkp\nHXBpw9ALAgMBAAECggEAVhatyhDlV+qyabwMDlriIj2QkrhJ5CE2J3SE1tL3fqDK\n0rnE0X4Cb/RtXEcguzW7dV1TwTA42ObcqsI9XLCkN6Bo4EFyfPQjBRHud1w2X8kn\nKKr2wIv460gmDRkZD8iadi7/2XPlJVD5dof+KD4bwZRf5oKOsW8k/ulNCrDgj/mj\n0IO5yuea7uX5PcsidWQzpMKDGdwnwoh7dLb49l/wRKuAnAeKL6WcCT1omdSIa+g0\nD47dDxndmFseLiaDtE2aQ4qZK2hJJmQk1nwdkVZsvmGvGuC1A4npg9WwWmGYo9Ak\nxkKUwrZegGtln/2c5SrFBCChplmDAmj2/GeM/H2WrQKBgQDwkt5RwBeRmmqBgRke\nJVipbYmCd43/YFAodpo1SZwcLA+29GVnyvwWnqW4zgw73IqrbKvqx19bUsOFsAzr\nYrZAWDRmigJUnKu+xP49rP78KeE0Dn4rh9ooT+8WBTUDddSSyUCRXTX+Sz+KPcV5\nJijobtZ/tjONo9BtGmIf/+NixwKBgQDmNdRZBzkCEx5RkhILVAEAW60FEsaqqjEJ\nhHrjWeDy+LUKkQl1e29f4ajU0uyALdPPTBcp2kpjy9BoH9gIEQSaYF5XAOYIe1na\nkumil6z3m9AiWfqivbSkysQFMcw5eF04u0vWKC2BXXoHbWqI0UNbUiLzTxfHRliz\nXcfcNvHknQKBgQC4KwctOEwSuE7Ow4DyFg8Q7X02tsWq+hWDVIBrSOXMn2KMYf57\nfeaMfnlJx9uPvB8garoVqvlyFSL/Zi4NyOzSx3OeCAsOsT29dltX5ebyLjFsQ6gN\nNRwqfj7+8Y+LDZploNHgNqZN/VcwQme5fiAVCD0HWfmPdhfqXic+bguqIwKBgQCo\nvQoR25Zwq9zMQ3oQbZlyTsAqeNG/5JGe/Ukp/gZBcgUZYqgBQeGn8PrUTGpnpa+c\nQZS067kdHxZ6S+UIPJkYIszjjtgNnYSGDqtLr0tsDvxnQXbR9KVFKQ63FAIymcQS\nwk5bAgYgzYiViyDMej6Z4EGYAABY43o+tt24z1lMjQKBgQDQMl46QEoen6frtUvf\nGOzj5zOlci9UYE5FQRIq2Q7QweWvJot07RfZmJLJepvNOj+xDanxAKRVN0NFocmj\nvnWjzeWNfZU+uQTfFgeGNKhbluQntH969ca2zvFuXa9g4LDu9/NI9+ldkkag9YEp\nbEe/nJ+GMqPCTO93tFADNuXKsQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "cypher-sheets-bucket@cypher-sheets.iam.gserviceaccount.com",
+  "client_id": "117330867675513800270",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cypher-sheets-bucket%40cypher-sheets.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
