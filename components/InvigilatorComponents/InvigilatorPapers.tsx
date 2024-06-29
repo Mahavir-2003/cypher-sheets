@@ -26,7 +26,7 @@ type FileInformation = {
   };
 };
 
-const ExaminerPapers = () => {
+const InvigilatorPapers = () => {
   const [files, setFiles] = useState<FileInformation[]>([]);
 
   async function fetchFiles() {
@@ -69,7 +69,7 @@ const ExaminerPapers = () => {
         </TableHeader>
         <TableBody>
           {files
-            .filter((file) => file.canBeAccessedBy.Examiner)
+            .filter((file) => file.canBeAccessedBy.Invigilator)
             .map((file) => (
               <TableRow key={file.fileID}>
                 <TableCell>{file.filename}</TableCell>
@@ -94,4 +94,4 @@ const ExaminerPapers = () => {
   );
 };
 
-export default ExaminerPapers;
+export default InvigilatorPapers;

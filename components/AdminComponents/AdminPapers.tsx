@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "../ui/button";
 
 type FileInformation = {
   filename: string;
@@ -30,7 +31,7 @@ const AdminPapers = () => {
 
   async function fetchFiles() {
     try {
-      const response = await fetch("/api/admin/get");
+      const response = await fetch("/api/users/get");
       if (!response.ok) {
         throw new Error("Failed to fetch files");
       }
@@ -47,32 +48,42 @@ const AdminPapers = () => {
     fetchFiles();
   }, []);
 
+  const openLink = (e: any) => {
+    window.open(e.target.accessKey, "_blank");
+  };
+
   return (
     <div>
       <Table>
         <TableCaption>A list of All Users.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead >filename</TableHead>
+            <TableHead>filename</TableHead>
             <TableHead>email</TableHead>
             <TableHead>role</TableHead>
             <TableHead className="text-right">Accessed By</TableHead>
+            <TableHead className="text-right">View</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {files.map((file) => (
-            <TableRow key={file.fileID}>
-              <TableCell>{file.filename}</TableCell>
-              <TableCell>{file.uploadedBy.email}</TableCell>
-              <TableCell>{file.uploadedBy.role}</TableCell>
-              <TableCell className="text-right">
-                {Object.entries(file.canBeAccessedBy)
-                  .filter(([, value]) => value)
-                  .map(([key]) => key)
-                  .join(", ")}
-              </TableCell>
-            </TableRow>
-          ))}
+              <TableRow key={file.fileID}>
+                <TableCell>{file.filename}</TableCell>
+                <TableCell>{file.uploadedBy.email}</TableCell>
+                <TableCell>{file.uploadedBy.role}</TableCell>
+                <TableCell className="text-right">
+                  {Object.entries(file.canBeAccessedBy)
+                    .filter(([, value]) => value)
+                    .map(([key]) => key)
+                    .join(", ")}
+                </TableCell>
+                <TableCell className="text-right">
+                  <Button onClick={openLink} accessKey={file.fileAccessURL}>
+                    View
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </div>
