@@ -1,7 +1,7 @@
 // pages/api/upload.ts
 import { Storage } from "@google-cloud/storage";
 import { NextRequest, NextResponse } from "next/server";
-import dbConnect from '@/lib/dbConnect'; // You'll need to create this
+import dbConnect from '@/lib/dbConnect';
 import File from '@/app/models/fileSchema';
 
 export async function POST(req: NextRequest) {
@@ -28,21 +28,29 @@ export async function POST(req: NextRequest) {
       const buffer = await file.arrayBuffer();
       const fileBuffer = Buffer.from(buffer);
 
-      const blob = bucket.file(file.name);
-      const blobStream = blob.createWriteStream();
+      // Generate a unique filename
+      const uniqueFilename = `${Date.now()}-${file.name}`;
+      const blob = bucket.file(uniqueFilename);
 
-      await new Promise((resolve, reject) => {
-        blobStream.on('finish', resolve);
-        blobStream.on('error', reject);
-        blobStream.end(fileBuffer);
+      // Upload the file
+      await blob.save(fileBuffer, {
+        contentType: file.type,
+        public: true, // Make the file publicly accessible
       });
 
-      const fileAccessURL = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+      // Get the file metadata
+      const [metadata] = await blob.getMetadata();
+
+      // Generate a signed URL that expires in 1 hour (3600 seconds)
+      const [signedUrl] = await blob.getSignedUrl({
+        action: 'read',
+        expires: Date.now() + 3600 * 1000,
+      });
 
       const newFile = new File({
         filename: file.name,
-        fileID: blob.id,
-        fileAccessURL: fileAccessURL,
+        fileID: metadata.id,
+        fileAccessURL: signedUrl,
         uploadedBy: {
           email: email,
           role: role
