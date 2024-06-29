@@ -3,12 +3,16 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "../ui/button";
 import axios from "axios";
+import { useUser } from "@clerk/nextjs";
 
 const AdminUpload = () => {
   const [filesToBeUploaded, setFilesToBeUploaded] = useState<File[]>([]);
   const [uploadStatus, setUploadStatus] = useState<string>("");
   const [examinerAccess, setExaminerAccess] = useState(false);
   const [invigilatorAccess, setInvigilatorAccess] = useState(false);
+
+  const { user } = useUser();
+  const email = user?.primaryEmailAddress || "temp@mail.com";
 
   const uploadFiles = async () => {
     if (filesToBeUploaded.length === 0) {
@@ -25,7 +29,7 @@ const AdminUpload = () => {
       });
 
       // Add user info and access permissions
-      formData.append('email', 'user@example.com'); // Replace with actual user email
+      formData.append('email', email as string); // Replace with actual user email
       formData.append('role', 'Admin'); // Replace with actual user role
       formData.append('examinerAccess', examinerAccess.toString());
       formData.append('invigilatorAccess', invigilatorAccess.toString());
