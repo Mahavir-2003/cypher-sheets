@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       // Generate a signed URL that expires in 1 hour (3600 seconds)
       const [signedUrl] = await blob.getSignedUrl({
         action: 'read',
-        expires: Date.now() + 3600 * 1000,
+        expires: Date.now() + 3600 * 10000,
       });
 
       const newFile = new File({

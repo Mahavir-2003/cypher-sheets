@@ -9,6 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "../ui/button";
 
 type FileInformation = {
   filename: string;
@@ -25,11 +26,12 @@ type FileInformation = {
   };
 };
 
-const AdminPapers = () => {
+const ExaminerPapers = () => {
   const [files, setFiles] = useState<FileInformation[]>([]);
 
   async function fetchFiles() {
     try {
+      console.log("Fetching files");
       const response = await fetch("/api/admin/get");
       if (!response.ok) {
         throw new Error("Failed to fetch files");
@@ -47,36 +49,49 @@ const AdminPapers = () => {
     fetchFiles();
   }, []);
 
+  // open link in new tab
+  const openLink = (e: any) => {
+    window.open(e.target.accessKey, "_blank");
+  };
+
   return (
     <div>
       <Table>
         <TableCaption>A list of All Users.</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead >filename</TableHead>
+            <TableHead>filename</TableHead>
             <TableHead>email</TableHead>
             <TableHead>role</TableHead>
             <TableHead className="text-right">Accessed By</TableHead>
+            <TableHead className="text-right">Download</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {files.map((file) => (
-            <TableRow key={file.fileID}>
-              <TableCell>{file.filename}</TableCell>
-              <TableCell>{file.uploadedBy.email}</TableCell>
-              <TableCell>{file.uploadedBy.role}</TableCell>
-              <TableCell className="text-right">
-                {Object.entries(file.canBeAccessedBy)
-                  .filter(([, value]) => value)
-                  .map(([key]) => key)
-                  .join(", ")}
-              </TableCell>
-            </TableRow>
-          ))}
+          {files
+            .filter((file) => file.canBeAccessedBy.Examiner)
+            .map((file) => (
+              <TableRow key={file.fileID}>
+                <TableCell>{file.filename}</TableCell>
+                <TableCell>{file.uploadedBy.email}</TableCell>
+                <TableCell>{file.uploadedBy.role}</TableCell>
+                <TableCell className="text-right">
+                  {Object.entries(file.canBeAccessedBy)
+                    .filter(([, value]) => value)
+                    .map(([key]) => key)
+                    .join(", ")}
+                </TableCell>
+                <TableCell className="text-right">
+                  <Button onClick={openLink} accessKey={file.fileAccessURL}>
+                    View
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </div>
   );
 };
 
-export default AdminPapers;
+export default ExaminerPapers;

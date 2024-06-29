@@ -1,5 +1,7 @@
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { Roles } from "../lib/definitions";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ExaminerPapers from "./ExaminerComponents/ExaminerPapers";
 
 const ExaminerDashboard = () => {
 
@@ -11,7 +13,18 @@ const ExaminerDashboard = () => {
     }
 
   return (
-    <div>ExaminerDashboard</div>
+    <div className=" w-[80%] rounded-md  h-full relative flex justify-center items-start">
+      <Tabs defaultValue="users" className="w-full h-[90%]">
+        <TabsList className="grid w-full grid-cols-1">
+          <TabsTrigger value="papers">Papers Accessible by You</TabsTrigger>
+        </TabsList>
+        <div className="w-full h-full">
+        <TabsContent className="w-full h-full" value="papers">
+          <ExaminerPapers />
+        </TabsContent>
+        </div>
+      </Tabs>
+    </div>
   )
 }
 
