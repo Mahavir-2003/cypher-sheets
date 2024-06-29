@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cypher - Sheet : Keep your Exam Paper Safe
 
-## Getting Started
+# OverView
 
-First, run the development server:
+This repository provides a comprehensive solution for secure exam paper management, featuring robust user authentication and authorization mechanisms for administrators, examiners, and invigilators. It includes role-based access control to safeguard data privacy, enabling administrators to securely upload, encrypt, and manage examination. Granular access controls ensure only authorized personnel can view and access specific paper. The system also offers a secure interface for authorized users to securely view and download exam papers.
+# Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**1. Role Based Access**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Role-Based Access Control ensures secure management of exam papers by implementing a secure login system for administrators, examiners, and invigilators, each with role-specific permissions. Granular access control restricts paper access to authorized personnel only, maintaining data privacy and security. This approach ensures that each user role has appropriate access based on their responsibilities, enhancing the overall security and management of exam papers. 
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**2. Administrator Role Features**
 
-## Learn More
+The Administrator role is responsible for managing both users and exam papers within the system. Administrators have the authority to change user roles, ensuring appropriate permissions and access levels for different users. They can also upload and delete exam papers, managing the content and availability of these documents. This role ensures that the system remains secure and well-organized by controlling user access and overseeing the exam paper lifecycle.
 
-To learn more about Next.js, take a look at the following resources:
+**3. Examiner Role Features**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The Examiner role is responsible for managing exam papers only if they have been granted specific access. This includes viewing and handling the exam papers relevant to their assigned tasks. Examiners do not have access to manage papers outside their assigned permissions, ensuring that access is restricted to maintain security and confidentiality.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**4. Invigilator Role Features**
 
-## Deploy on Vercel
+The Invigilator role is responsible for overseeing the examination process, but only has access to exam papers if explicitly granted. Invigilators can view and manage exam papers relevant to their assigned duties. Access is limited to ensure security and confidentiality, and invigilators do not have broader permissions beyond what is necessary for their role.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Technology Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+* NextJS 15.0 (for Web app)
+* OAuth ( Google ,Clerk etc. ) (Secure Auth)
+* Google Cloud Storage (for Storing Files)
+* Node Js (for Backend)
+* MongoDB
+
+# Screecshot
+![Cypher - Sheet Landing Page](https://github.com/Mahavir-2003/cypher-sheets/blob/master/app/Cypher%20-%20Sheet%20-%20Home.png)
+
+
+![Cypher - Sheet Administrator Page](https://github.com/Mahavir-2003/cypher-sheets/blob/master/app/Cypher%20-%20Sheet%20-%20Administrator.png)
+
+
+# How to Support Cypher - Sheet?
+We appreciate your interest and support for Cypher - Sheet! Here are a few ways you can contribute:
+
+⭐ Star this project: Show your support by giving us a star on GitHub!
+
+📣 Spread the word: Share Cypher - Sheet with your friends, family, and  anyone who might find it helpful or interesting.
+
+🚀 Contribute: If you have skills in design, development, or feedback, we welcome contributions! Contact the team at nisargpatel2101@gnu.ac.in for details.
+
+# ⚠️ Copyright Notice ⚠️
+
+© [2024] Cypher - Sheet. All rights reserved. The content, design, and features presented in this overview are the intellectual property of Cypher - Sheet and its creators. Any unauthorized reproduction, distribution, or copying of the content, in whole or in part, without explicit written permission from Cypher - Sheet, is strictly prohibited.
+
+# 🚫 Prohibited Actions 🚫
+
+Copying and distributing this content without the owner's permission is strictly prohibited. Any attempt to reproduce, modify, or share Cypher - Sheet's materials for commercial or non-commercial purposes without proper authorization will result in legal action.
+
+# 💼 Intellectual Property Rights 💼
+Cypher - Sheet holds exclusive intellectual property rights to the technology stack, design elements, and features mentioned in this overview. Unauthorized use or reproduction may lead to civil and criminal penalties.
+
+# 📧 Contact Us 📧
+To request permission for use, report infringement, or seek clarification, please contact us at nisargpatel2101@gnu.ac.in. We appreciate your cooperation and respect for our intellectual property.
+
+Thank you for understanding and respecting our creative work.
+
+#Cypher - Sheet #CopyrightProtection #IntellectualProperty
+
+Thank you for Visiting Us!
+
