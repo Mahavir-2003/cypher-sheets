@@ -2,7 +2,7 @@ import React from 'react'
 
 const Users = () => {
   return (
-    <div>Users</div>
+    <div className=' w-full h-full bg-red-200'>Users</div>
   )
 }
 
