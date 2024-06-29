@@ -1,16 +1,5 @@
 import { Roles } from "@/lib/definitions";
 import { auth } from "@clerk/nextjs/server";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Users from "./AdminComponents/Users";
 import AdminPapers from "./AdminComponents/AdminPapers";
@@ -25,13 +14,14 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className=" w-[80%] rounded-md border-white/40 h-full  flex justify-center items-start">
-      <Tabs defaultValue="users" className="w-full">
+    <div className=" w-[80%] rounded-md  h-full relative flex justify-center items-start">
+      <Tabs defaultValue="users" className="w-full h-[90%]">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="users">Users</TabsTrigger>
           <TabsTrigger value="papers">Papers</TabsTrigger>
           <TabsTrigger value="upload">Upload</TabsTrigger>
         </TabsList>
+        <div className="w-full h-full">
         <TabsContent className="w-full h-full" value="users">
           <Users />
         </TabsContent>
@@ -41,6 +31,7 @@ const AdminDashboard = () => {
         <TabsContent className="w-full h-full" value="upload">
           <AdminUpload />
         </TabsContent>
+        </div>
       </Tabs>
     </div>
   );
