@@ -1,36 +1,71 @@
+// pages/api/upload.ts
 import { Storage } from "@google-cloud/storage";
 import { NextRequest, NextResponse } from "next/server";
+import dbConnect from '@/lib/dbConnect'; // You'll need to create this
+import File from '@/app/models/fileSchema';
 
-export async function POST(req: NextRequest, res: NextResponse) {
-  // the body will contain the list of multiple files
+export async function POST(req: NextRequest) {
+  await dbConnect();
+
   try {
-    const data = req.body as unknown as { files: any[] }; // Cast data to the appropriate type
-    console.log(data);
+    const formData = await req.formData();
+    const files = formData.getAll('files') as File[];
+    const email = formData.get('email') as string;
+    const role = formData.get('role') as string;
+    const examinerAccess = formData.get('examinerAccess') === 'true';
+    const invigilatorAccess = formData.get('invigilatorAccess') === 'true';
 
-    // get all the files
-    const files = data.files;
-
-    if (!files) {
+    if (!files || files.length === 0) {
       return NextResponse.json({ error: "No files found" }, { status: 400 });
     }
 
-    console.log(files);
-
-    let fileIds = [];
-
-    // connect to the cloud storage
     const storage = new Storage({ keyFilename: "key.json" });
     const bucket = storage.bucket("cypher-sheets-bucket");
 
-    // loop through the files
+    const uploadedFiles = [];
+
     for (let file of files) {
-      // upload files to the cloud
-      const res = await bucket.upload(file);
-      console.log(res);
-      console.log("File uploaded successfully")
-      // fileIds.push(res[0].metadata.id)
+      const buffer = await file.arrayBuffer();
+      const fileBuffer = Buffer.from(buffer);
+
+      const blob = bucket.file(file.name);
+      const blobStream = blob.createWriteStream();
+
+      await new Promise((resolve, reject) => {
+        blobStream.on('finish', resolve);
+        blobStream.on('error', reject);
+        blobStream.end(fileBuffer);
+      });
+
+      const fileAccessURL = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+
+      const newFile = new File({
+        filename: file.name,
+        fileID: blob.id,
+        fileAccessURL: fileAccessURL,
+        uploadedBy: {
+          email: email,
+          role: role
+        },
+        canBeAccessedBy: {
+          Examiner: examinerAccess,
+          Invigilator: invigilatorAccess
+        }
+      });
+
+      await newFile.save();
+      uploadedFiles.push(newFile);
     }
+
+    return NextResponse.json({ message: "Files uploaded successfully", files: uploadedFiles }, { status: 200 });
   } catch (e) {
-    console.log(e);
+    console.error(e);
+    return NextResponse.json({ error: "An error occurred while uploading files" }, { status: 500 });
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

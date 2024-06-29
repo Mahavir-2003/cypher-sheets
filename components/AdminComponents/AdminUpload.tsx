@@ -1,65 +1,117 @@
-import Image from 'next/image'
-import { useState } from 'react';
+"use client";
+import Image from "next/image";
+import { useState } from "react";
+import { Button } from "../ui/button";
+import axios from "axios";
 
 const AdminUpload = () => {
+  const [filesToBeUploaded, setFilesToBeUploaded] = useState<File[]>([]);
+  const [uploadStatus, setUploadStatus] = useState<string>("");
+  const [examinerAccess, setExaminerAccess] = useState(false);
+  const [invigilatorAccess, setInvigilatorAccess] = useState(false);
 
-//   import { Storage } from "@google-cloud/storage";
-// import { NextRequest, NextResponse } from "next/server";
-
-// export async function POST(req: NextRequest, res: NextResponse) {
-//   // the body will contain the list of multiple files
-//   try {
-//     const data = req.body as unknown as { files: any[] }; // Cast data to the appropriate type
-//     console.log(data);
-
-//     // get all the files
-//     const files = data.files;
-
-//     if (!files) {
-//       return NextResponse.json({ error: "No files found" }, { status: 400 });
-//     }
-
-//     console.log(files);
-
-//     let fileIds = [];
-
-//     // connect to the cloud storage
-//     const storage = new Storage({ keyFilename: "key.json" });
-//     const bucket = storage.bucket("cypher-sheets-bucket");
-
-//     // loop through the files
-//     for (let file of files) {
-//       // upload files to the cloud
-//       const res = await bucket.upload(file);
-//       console.log(res);
-//       console.log("File uploaded successfully")
-//       // fileIds.push(res[0].metadata.id)
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-// }
-
-
-    const [filesToBeUploaded, setFilesToBeUploaded] = useState([]);
-
-    const openUploadBox = () => {
-        const input = document.createElement('input')
-        input.type = 'file'
-        input.accept = '.pdf,.docx'
-        input.multiple = true
-        input.click()
-
-        // 
+  const uploadFiles = async () => {
+    if (filesToBeUploaded.length === 0) {
+      setUploadStatus("No files selected");
+      return;
     }
 
-  return (
-    <div className=' w-full h-full flex relative justify-center items-center rounded-md border-border border-[1px] hover:cursor-pointer'>
-      <div className='h-[15%] w-[15%] relative'>
-        <Image className='stroke-white' src='/upload.svg' alt='Upload' fill={true} />
-      </div>
-    </div>
-  )
-}
+    setUploadStatus("Uploading...");
 
-export default AdminUpload
+    try {
+      const formData = new FormData();
+      filesToBeUploaded.forEach((file) => {
+        formData.append('files', file);
+      });
+
+      // Add user info and access permissions
+      formData.append('email', 'user@example.com'); // Replace with actual user email
+      formData.append('role', 'Admin'); // Replace with actual user role
+      formData.append('examinerAccess', examinerAccess.toString());
+      formData.append('invigilatorAccess', invigilatorAccess.toString());
+
+      const res = await axios.post("/api/upload", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      console.log(res.data);
+      setUploadStatus("Files uploaded successfully");
+    } catch (e) {
+      console.error(e);
+      setUploadStatus("Error uploading files");
+    }
+  };
+
+  const openUploadBox = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".pdf,.docx";
+    input.multiple = true;
+    input.click();
+
+    input.onchange = (e) => {
+      if (e.target) {
+        const files = (e.target as HTMLInputElement).files;
+        if (files) {
+          const fileArray = Array.from(files);
+          setFilesToBeUploaded(fileArray);
+        }
+      }
+    };
+  };
+
+  return (
+    <>
+      <div
+        onClick={openUploadBox}
+        className="w-full h-[40%] flex-col flex relative justify-center items-center rounded-md border-border border-[1px] hover:cursor-pointer"
+      >
+        <div className="h-[15%] w-[15%] relative">
+          <Image
+            className="stroke-white"
+            src="/upload.svg"
+            alt="Upload"
+            fill={true}
+          />
+        </div>
+        <div className="text-[#666] text-sm">Click to upload files</div>
+      </div>
+      
+      {filesToBeUploaded.length > 0 && (
+        <div className="mt-4">
+          <h3>Selected Files:</h3>
+          <ul>
+            {filesToBeUploaded.map((file, index) => (
+              <li key={index}>{file.name}</li>
+            ))}
+          </ul>
+          <div className="mt-2">
+            <label>
+              <input 
+                type="checkbox" 
+                checked={examinerAccess} 
+                onChange={(e) => setExaminerAccess(e.target.checked)} 
+              /> Examiner Access
+            </label>
+          </div>
+          <div>
+            <label>
+              <input 
+                type="checkbox" 
+                checked={invigilatorAccess} 
+                onChange={(e) => setInvigilatorAccess(e.target.checked)} 
+              /> Invigilator Access
+            </label>
+          </div>
+          <Button onClick={uploadFiles} className="mt-2">Upload Files</Button>
+        </div>
+      )}
+
+      {uploadStatus && <p className="mt-2">{uploadStatus}</p>}
+    </>
+  );
+};
+
+export default AdminUpload;
