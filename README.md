@@ -5,20 +5,20 @@
 This repository provides a comprehensive solution for secure exam paper management, featuring robust user authentication and authorization mechanisms for administrators, examiners, and invigilators. It includes role-based access control to safeguard data privacy, enabling administrators to securely upload, encrypt, and manage examination. Granular access controls ensure only authorized personnel can view and access specific paper. The system also offers a secure interface for authorized users to securely view and download exam papers.
 # Key Features
 
-**1.Role Based Access**
+**1. Role Based Access**
 
 
 Role-Based Access Control ensures secure management of exam papers by implementing a secure login system for administrators, examiners, and invigilators, each with role-specific permissions. Granular access control restricts paper access to authorized personnel only, maintaining data privacy and security. This approach ensures that each user role has appropriate access based on their responsibilities, enhancing the overall security and management of exam papers. 
 
-**2.Administrator Role Features**
+**2. Administrator Role Features**
 
 The Administrator role is responsible for managing both users and exam papers within the system. Administrators have the authority to change user roles, ensuring appropriate permissions and access levels for different users. They can also upload and delete exam papers, managing the content and availability of these documents. This role ensures that the system remains secure and well-organized by controlling user access and overseeing the exam paper lifecycle.
 
-**3.Examiner Role Features**
+**3. Examiner Role Features**
 
 The Examiner role is responsible for managing exam papers only if they have been granted specific access. This includes viewing and handling the exam papers relevant to their assigned tasks. Examiners do not have access to manage papers outside their assigned permissions, ensuring that access is restricted to maintain security and confidentiality.
 
-**4.Invigilator Role Features**
+**4. Invigilator Role Features**
 
 The Invigilator role is responsible for overseeing the examination process, but only has access to exam papers if explicitly granted. Invigilators can view and manage exam papers relevant to their assigned duties. Access is limited to ensure security and confidentiality, and invigilators do not have broader permissions beyond what is necessary for their role.
 
@@ -37,12 +37,12 @@ The Invigilator role is responsible for overseeing the examination process, but 
 ![Cypher - Sheet Administrator Page](https://github.com/Mahavir-2003/cypher-sheets/blob/master/app/Cypher%20-%20Sheet%20-%20Administrator.png)
 
 
-# How to Support VirSteno?
+# How to Support Cypher - Sheet?
 We appreciate your interest and support for Cypher - Sheet! Here are a few ways you can contribute:
 
 ⭐ Star this project: Show your support by giving us a star on GitHub!
 
-📣 Spread the word: Share VirSteno with your friends, family, and  anyone who might find it helpful or interesting.
+📣 Spread the word: Share Cypher - Sheet with your friends, family, and  anyone who might find it helpful or interesting.
 
 🚀 Contribute: If you have skills in design, development, or feedback, we welcome contributions! Contact the team at nisargpatel2101@gnu.ac.in for details.
 
